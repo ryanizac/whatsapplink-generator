@@ -1,0 +1,17 @@
+.footer {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--black-p);
+    padding: 20px 0;
+    row-gap: 8px;
+}
+
+.simpleLink {
+    border: none;
+    background: none;
+}

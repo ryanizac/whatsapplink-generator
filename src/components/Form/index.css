@@ -1,0 +1,49 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 20px;
+}
+
+input {
+    padding: 10px 10px;
+    border: 1px solid var(--gray-p);
+    background-color: var(--gray-s);
+    color: var(--gray-3);
+    font-size: 16px;
+    transition: 0.25s;
+}
+
+input:focus {
+    outline: none;
+    border-color: rgba(82, 168, 236, .8);
+}
+
+input[type="radio"], label {
+    cursor: pointer;
+}
+
+button, a.link {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    padding: 10px 60px;
+    outline: none;
+    background-color: var(--blue-3);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: var(--blue-s);
+}
+
+.hasError {
+    border-color: var(--red);
+}
+
+.isOkay {
+    border-color: var(--green);
+}

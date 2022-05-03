@@ -1,4 +1,15 @@
 .aside {
+    padding: 60px;
     grid-column: 2;
     grid-row: 1;
+    background-color: var(--gray-s);
+}
+
+.smallText {
+    color: var(--blue-p);
+}
+
+p {
+    color: var(--gray-3);
+    line-height: 28px;
 }
