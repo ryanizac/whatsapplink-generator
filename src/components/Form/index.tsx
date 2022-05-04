@@ -40,14 +40,13 @@ export default function Form(props: FormProps) {
 
   function submitForm(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("generate link");
+
     if (form.number !== null && form.message !== null) {
       const link = makeLink(form.number, form.message, form.device);
-      console.log(link);
+
       copyTextToClipboard(link);
       alertContext.show("success", "link copiado para a área de transferência");
     } else {
-      console.log("error");
       alertContext.show("error", "Há campos inválidos");
     }
   }
@@ -77,7 +76,6 @@ export default function Form(props: FormProps) {
   }
 
   function changeNumber(value: string) {
-    console.log("changeNumber", value);
     if (value.length === 0) {
       updateForm({ number: null });
     } else {
@@ -92,13 +90,11 @@ export default function Form(props: FormProps) {
   }
 
   function changeText(value: string) {
-    console.log("changeText");
     if (value.length > 0) updateForm({ message: String(value) });
     else updateForm({ message: null });
   }
 
   function changeRadio(value: string) {
-    console.log("changeRadio");
     if (value in Device) updateForm({ device: Device[value as Device] });
   }
 
