@@ -62,11 +62,23 @@ export default function Form(props: FormProps) {
     return relations[state];
   }
 
+  function showNumber(value: number | null): string {
+    if (value !== null) {
+      const sValue = String(value);
+      const matches = sValue.match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+      if (matches) return `(${matches[1]}) ${matches[2]}-${matches[3]}`;
+    }
+    return "";
+  }
+
   function changeNumber(value: string) {
     console.log("changeNumber");
-    const newNumber = Number(value);
-    if (value.length === 0) updateForm({ number: null });
-    else updateForm({ number: newNumber || form.number });
+    if (value.length === 0) {
+      updateForm({ number: null });
+    } else {
+      const onlyNumbers = value.match(/\d+/g);
+      if (onlyNumbers) updateForm({ number: Number(onlyNumbers.join("")) });
+    }
   }
 
   function changeText(value: string) {
@@ -86,7 +98,7 @@ export default function Form(props: FormProps) {
         <input
           type="text"
           name="number"
-          value={form.number || ""}
+          value={showNumber(form.number)}
           onFocus={() => addOnlyFocused("number")}
           onChange={(e) => changeNumber(e.target.value)}
           placeholder="(00) 90000-0000"
