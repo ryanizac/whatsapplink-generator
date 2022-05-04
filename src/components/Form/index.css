@@ -29,7 +29,7 @@ button, a.link {
     border-radius: 4px;
     cursor: pointer;
     color: white;
-    padding: 10px 60px;
+    padding: 10px 20px;
     outline: none;
     background-color: var(--blue-3);
     text-decoration: none;

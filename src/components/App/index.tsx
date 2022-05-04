@@ -8,8 +8,8 @@ export default function App() {
   return (
     <div className="app">
       <ProviderAlertContext>
-        <Aside />
         <Content />
+        <Aside />
         <Footer />
       </ProviderAlertContext>
     </div>

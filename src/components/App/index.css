@@ -6,3 +6,10 @@
     grid-template-rows: 100vh auto;
     position: relative;
 }
+
+@media screen and (max-width: 850px) {
+    .app {
+        display: flex;
+        flex-direction: column;
+    }
+}
