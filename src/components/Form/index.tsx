@@ -66,18 +66,28 @@ export default function Form(props: FormProps) {
     if (value !== null) {
       const sValue = String(value);
       const matches = sValue.match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
-      if (matches) return `(${matches[1]}) ${matches[2]}-${matches[3]}`;
+      if (matches)
+        return (
+          (matches[1] ? `(${matches[1]})` : "") +
+          (matches[2] ? " " + matches[2] : "") +
+          (matches[3] ? "-" + matches[3] : "")
+        );
     }
     return "";
   }
 
   function changeNumber(value: string) {
-    console.log("changeNumber");
+    console.log("changeNumber", value);
     if (value.length === 0) {
       updateForm({ number: null });
     } else {
       const onlyNumbers = value.match(/\d+/g);
-      if (onlyNumbers) updateForm({ number: Number(onlyNumbers.join("")) });
+      if (onlyNumbers) {
+        const newNumber = Number(onlyNumbers.join(""));
+        if (newNumber === form.number) {
+          updateForm({ number: Number(newNumber.toString().slice(0, -1)) });
+        } else updateForm({ number: newNumber });
+      }
     }
   }
 
