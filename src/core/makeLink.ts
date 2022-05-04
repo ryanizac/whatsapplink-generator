@@ -6,6 +6,6 @@ export default function makeLink(
   device: Device
 ) {
   const deviceURL = Device.desktop === device ? "web" : "api";
-  const params = `send?phone=${number}&text=${encodeURIComponent(message)}`;
+  const params = `send?phone=55${number}&text=${encodeURIComponent(message)}`;
   return `https://${deviceURL}.whatsapp.com/${params}`;
 }
