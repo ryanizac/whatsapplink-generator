@@ -1,15 +1,14 @@
 import type { FormEvent } from "react";
 import { useState } from "react";
+import { useAlertContext } from "../../context/AlertContext";
+import makeLink from "../../core/makeLink";
 import useArray from "../../hooks/useArray";
 import useObject from "../../hooks/useObject";
+import { Device } from "../../types/Device";
+import { copyTextToClipboard } from "../../util/string";
 import "./index.css";
 
 interface FormProps {}
-
-enum Device {
-  mobile = "mobile",
-  desktop = "desktop",
-}
 
 interface IForm {
   number: number | null;
@@ -22,6 +21,8 @@ type KForm = keyof IForm;
 type IStatus = "notStarted" | "okay" | "error";
 
 export default function Form(props: FormProps) {
+  const alertContext = useAlertContext();
+
   const { state: hasFocused, addOnly: addOnlyFocused } = useArray<KForm>([]);
   const { state: form, update: updateForm } = useObject<IForm>({
     number: null,
@@ -29,17 +30,26 @@ export default function Form(props: FormProps) {
     device: Device.desktop,
   });
 
-  function submitForm(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    console.log("generate link");
-  }
-
   function validateInput(key: KForm): IStatus {
     const isFocused = hasFocused.includes(key);
     const isWrited = form[key] !== null;
     if (isWrited) return "okay";
     else if (isFocused) return "error";
     else return "notStarted";
+  }
+
+  function submitForm(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    console.log("generate link");
+    if (form.number !== null && form.message !== null) {
+      const link = makeLink(form.number, form.message, form.device);
+      console.log(link);
+      copyTextToClipboard(link);
+      alertContext.show("success", "link copiado para a área de transferência");
+    } else {
+      console.log("error");
+      alertContext.show("error", "Há campos inválidos");
+    }
   }
 
   function getClasslistInput(key: KForm): string {

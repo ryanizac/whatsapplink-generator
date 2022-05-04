@@ -1,0 +1,35 @@
+.alert {
+    min-width: 320px;
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    background: var(--blue-s);
+    position: fixed;
+    top: calc(100vh - 100px);
+    left: -100%;
+    transition-duration: 2s;
+    transition-timing-function: ease-out;
+    padding: 4px 10px;
+}
+
+.alertActive {
+    left: 40px;
+    transition-duration: 0.6s;
+}
+
+.alert p {
+    margin: 0;
+    color: white;
+}
+
+.alertSuccess {
+    background: var(--green);
+}
+
+.alertError {
+    background: var(--red);
+}
+
+.alertWarn {
+    background: var(--yellow);
+}
